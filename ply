@@ -1,0 +1,77 @@
+*crdit @AHMED_MAGDY
+import time
+ 
+class Customer:
+ 
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+ 
+    def tryAnotherService(self):
+        user_input = input("Would you like to do another transaction? Type Y or N")
+        while True:
+            if ("y" in user_input):
+                self.login()
+                break
+            elif ("n" in user_input):
+                print('Thank you for using our services')
+                break
+            else:
+                print("Invalid choice. Please enter y or n")
+ 
+    def login(self):
+        print('Hello there ' + self.name)
+        time.sleep(2)
+ 
+        user_input = input("Please choose what you want to do? withdraw - balance - deposit ")
+ 
+        while True:
+            if ("withdraw" in user_input):
+                self.withdraw()
+                break
+            elif ("check" in user_input or "balance" in user_input):
+                self.checkBalance()
+                break
+            elif ("deposit" in user_input):
+                self.deposit()
+                break
+            else:
+                print("Sorry I did not understand. Try again")
+                self.login()
+ 
+    def checkBalance(self):
+        print("Your balance is SAR " + str(self.balance))
+        self.tryAnotherService()
+   
+    def deposit(self):
+        time.sleep(2)
+ 
+        user_input = input("Please enter the amount you want to deposit ")
+ 
+        amountEntered = float(user_input)
+ 
+        self.balance = self.balance + amountEntered
+ 
+        time.sleep(2)
+ 
+        print("Deposit successful. The balance now is SAR " + str(self.balance))
+        self.tryAnotherService()
+ 
+    def withdraw(self):
+        time.sleep(2)
+        user_input = input("Please enter the amount you want to withdraw ")
+ 
+        amountEntered = float(user_input)
+ 
+        if (amountEntered > self.balance):
+            print('Insufficient funds')
+       
+        else:
+            self.balance = self.balance - amountEntered
+            print("Withdrawal successful. The current balance is " + str(self.balance))
+            self.tryAnotherService()
+ 
+ 
+marwan = Customer('marwan', 0)
+ 
+bayan = Customer('bayan', 0)
